@@ -17,10 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from api import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', view=views.drinks_list),
+    path('api/<int:id>/', view=views.drinks_details),
 ]
+
+
+#just to make our endpoints fancy enough to show in raw json format depending on our choice (/api.json)
+urlpatterns = format_suffix_patterns(urlpatterns=urlpatterns)
